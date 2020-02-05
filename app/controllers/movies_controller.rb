@@ -11,9 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
-    Rails.logger.debug("Inside index function")
-    #@movies = Movie.all
-    @movies = Movie.order(:sort_by)
+    @movies = Movie.all
   end
 
   def new
