@@ -19,12 +19,12 @@ class MoviesController < ApplicationController
 		end
 		
 		@all_ratings = Movie.all_ratings
-		if params.key?(:ratings)
-			session[:ratings] = params[:ratings]
-		elsif session.key?(:ratings)
-			params[:ratings] = session[:ratings]
-			redirect_to movies_path(params) and return
-		end
+		# if params.key?(:ratings)
+		# 	session[:ratings] = params[:ratings]
+		# elsif session.key?(:ratings)
+		# 	params[:ratings] = session[:ratings]
+		# 	redirect_to movies_path(params) and return
+		# end
 		
 		sort_by = session[:sort_by]
 		@hilite = sort_by
