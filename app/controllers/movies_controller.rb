@@ -18,8 +18,8 @@ class MoviesController < ApplicationController
 			redirect_to movies_path(params) and return
 		end
 		
-		@hilite = sort_by = session[:sort_by]
-		#@hilite = sort_by
+		sort_by = session[:sort_by]
+		@hilite = sort_by
 		@movies = Movie.order(sort_by)
   end
 
