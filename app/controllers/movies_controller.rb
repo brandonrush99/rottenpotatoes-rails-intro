@@ -11,7 +11,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @hilite = nil
     if params.key?(:sort_by)
 			session[:sort_by] = params[:sort_by]
 		elsif session.key?(:sort_by)
