@@ -13,10 +13,10 @@ class MoviesController < ApplicationController
   def index
     if params.key?(:sort_by)
 			session[:sort_by] = params[:sort_by]
-    elsif session.key?(:sort_by)
+		elsif session.key?(:sort_by)
 			params[:sort_by] = session[:sort_by]
 			redirect_to movies_path(params) and return
-    end
+		end
 		
 		sort_by = session[:sort_by]
 		@hilite = sort_by
