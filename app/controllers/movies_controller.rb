@@ -11,16 +11,15 @@ class MoviesController < ApplicationController
   end
 
   def index
-    #if one of the links has been pressed, then params[:sort_by] should exist and be none nil
     if params.key?(:sort_by)
 			session[:sort_by] = params[:sort_by]
-    elsif session.key?(:sort_by)  #if the link has already been pressed and is pressed again, then basically refresh the page
+    elsif session.key?(:sort_by)
 			params[:sort_by] = session[:sort_by]
 			redirect_to movies_path(params) and return
     end
 		
-		sort_by = session[:sort_by] #whatever was last clicked, sort the movies by that
-		@hilite = sort_by   #change the color of the header to hilite
+		sort_by = session[:sort_by]
+		@hilite = sort_by
 		@movies = Movie.order(sort_by)
   end
 
