@@ -23,7 +23,7 @@ class MoviesController < ApplicationController
 		
 		sort_by = session[:sort_by]
 		@hilite = sort_by
-		@movies = Movie.order(sort_by)
+		@movies = Movie.with_ratings(all_ratings).order(sort_by)
   end
 
   def new
