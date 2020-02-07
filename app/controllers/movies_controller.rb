@@ -18,8 +18,10 @@ class MoviesController < ApplicationController
 			redirect_to movies_path(params) and return
 		end
 		@all_ratings = Movie.all_ratings
+		@checked_ratings = @all_ratings
 		if params.key?(:ratings)
 			session[:ratings] = params[:ratings]
+			@checked_ratings = params[:ratings].keys
 		elsif session.key?(:ratings)
 			params[:ratings] = session[:ratings]
 			redirect_to movies_path(params) and return
@@ -27,13 +29,7 @@ class MoviesController < ApplicationController
 		
 		sort_by = session[:sort_by]
 		@hilite = sort_by
-		if(params.key?(:ratings))
-		  @checked_ratings = params[:ratings]
-		  @movies = Movie.with_ratings(params[:ratings].keys).order(sort_by)
-	  else
-	    @checked_ratings = @all_ratings
-	    @movies = Movie.with_ratings(@all_ratings).order(sort_by)
-	  end
+		@movies = Movie.with_ratings(@checked_ratings).order(sort_by)
   end
 
   def new
